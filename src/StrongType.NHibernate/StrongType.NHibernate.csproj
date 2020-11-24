@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>StrongType.NHibernate</RootNamespace>
+    <PackageId>StrongTypeId.NHibernate</PackageId>
+    <Authors>Yann ROBIN</Authors>
+    <PackageTags>stronglytypedid strongid strong identifier stronglytyped nhibernate orm hibernate strongtypeid</PackageTags>
+    <Description>Store and retrieve StrongTypeId using NHibernate. Provider UserType</Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NHibernate" Version="5.3.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StrongType\StrongType.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>StrongTypeId.FluentNHibernate</PackageId>
+    <Authors>Yann ROBIN</Authors>
+    <PackageTags>stronglytypedid strongid strong identifier stronglytyped nhibernate orm hibernate strongtypeid fluentnhibernate</PackageTags>
+    <Description>Provide fluent nhibernate convention for StrongTypeId using NHibernate.</Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StrongType.NHibernate\StrongType.NHibernate.csproj" />
+    <ProjectReference Include="..\StrongType\StrongType.csproj" />
+  </ItemGroup>
+
+</Project>
