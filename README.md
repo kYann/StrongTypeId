@@ -54,7 +54,11 @@ Install-Package StrongTypeId
 Simply declare your identifiers like this :
 
 ```csharp
-public record ProductId(int Value) : StrongTypeId(Value);
+public record ProductId(int Value) : StrongTypeId(Value)
+{
+    // Needed if you wanna use your StrongTypeId in route parameters
+	public override string ToString() => base.ToString();
+}
 ```
 
 And use it like that :
