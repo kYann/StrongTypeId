@@ -59,6 +59,7 @@ Simply declare your identifiers like this :
 public record ProductId(int Value) : StrongTypeId(Value)
 {
 	// Needed if you wanna use your StrongTypeId in route parameters
+	// Or you can use StrongTypeId.Generators to generate it
 	public override string ToString() => base.ToString();
 }
 ```
@@ -125,3 +126,37 @@ var fluentCfg = Fluently.Configure()
         m.FluentMappings.Conventions.Add<ConventionStrongTypeId>();
     });
 ```
+
+
+# AspNet
+
+When using strong type id in your route like this :
+
+```csharp
+var productId = new ProductId(5);
+RedirectToAction("Index", new { id = productId });
+```
+
+The generated url, will use `productId.ToString()` in the Url.
+By default C# create a `ToString()` method on `record` that will display :
+
+`ProductId { Value = 5 }`
+
+And the url will look like this :
+
+`/Product/Index/ProductId { Value = 5 }` instead of `/Product/Index/5`
+
+To prevent this, you have to override `ToString()` or use the source generator that will do it for you.
+
+# Generators
+```powershell
+Install-Package StrongTypeId.Generators
+```
+
+Then you must declare your record as partial :
+
+```csharp
+public partial record ProductId(int Value) : StrongTypeId(Value);
+```
+
+And the generator will generate the `ToString()` method at compilation.

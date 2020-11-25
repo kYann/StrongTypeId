@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>StrongType.Newtonsoft.Json</RootNamespace>
-	<PackageId>StrongTypeId.Newtonsoft.Json</PackageId>
+	  <PackageId>StrongTypeId.Newtonsoft.Json</PackageId>
     <Authors>Yann ROBIN</Authors>
     <PackageTags>stronglytypedid strongid strong identifier stronglytyped json newtonsoft strongtypeid</PackageTags>
     <Description>Serialize/Deserializer StrongTypeId from/to their base type using newtonsoft json. JsonConverter</Description>

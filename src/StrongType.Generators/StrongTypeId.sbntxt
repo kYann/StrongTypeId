@@ -1,0 +1,7 @@
+﻿namespace {{ Namespace }}
+{
+    public partial record {{ ClassName }}
+    {
+        public override string ToString() => base.ToString();
+    }
+}
