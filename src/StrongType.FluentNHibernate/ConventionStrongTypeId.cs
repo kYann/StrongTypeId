@@ -7,11 +7,20 @@ using System;
 
 namespace StrongType.FluentNHibernate
 {
-	public class ConventionStrongTypeId : IUserTypeConvention
+	public class ConventionStrongTypeId : IUserTypeConvention, IIdConvention
 	{
+		private bool IsStrongTypeId(IPropertyInspector propertyInspector)
+		{
+			var systemType = propertyInspector.Type.GetUnderlyingSystemType();
+			if (systemType is null)
+				return false;
+
+			return StrongTypeIdHelper.IsStrongTypeId(systemType);
+		}
+
 		public void Accept(IAcceptanceCriteria<IPropertyInspector> criteria)
 		{
-			criteria.Expect(_ => typeof(IStrongTypeId).IsAssignableFrom(_.Type.GetUnderlyingSystemType()));
+			criteria.Expect(IsStrongTypeId);
 		}
 
 		public void Apply(IPropertyInstance instance)
@@ -21,6 +30,21 @@ namespace StrongType.FluentNHibernate
 			var customType = typeof(NHStrongTypeIdUserType<>).MakeGenericType(propertyType);
 
 			instance.CustomType(customType);
+		}
+
+		public void Apply(IIdentityInstance instance)
+		{
+			var systemType = instance.Type.GetUnderlyingSystemType();
+			if (systemType is null)
+				return;
+
+			var isStrongType = StrongTypeIdHelper.IsStrongTypeId(systemType);
+
+			if (isStrongType)
+			{
+				var customType = typeof(NHStrongTypeIdUserType<>).MakeGenericType(systemType);
+				instance.CustomType(customType);
+			}
 		}
 	}
 }

@@ -8,6 +8,7 @@
     <PackageTags>stronglytypedid strongid strong identifier stronglytyped nhibernate orm hibernate strongtypeid</PackageTags>
     <Description>Store and retrieve StrongTypeId using NHibernate. Provider UserType</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

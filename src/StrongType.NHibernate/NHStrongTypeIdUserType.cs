@@ -4,6 +4,7 @@ using NHibernate.SqlTypes;
 using NHibernate.Type;
 using NHibernate.UserTypes;
 using System;
+using System.Data;
 using System.Data.Common;
 
 namespace StrongType.NHibernate
@@ -16,7 +17,35 @@ namespace StrongType.NHibernate
 			get
 			{
 				StrongTypeIdHelper.IsStrongTypeId(typeof(T), out var idType);
-				return new[] { (SqlType)TypeFactory.GetDefaultTypeFor(idType) };
+				var defaultType = TypeFactory.GetDefaultTypeFor(idType);
+				var dbType = (defaultType) switch
+				{
+					GuidType => DbType.Guid,
+					Int16Type => DbType.Int16,
+					Int32Type => DbType.Int32,
+					Int64Type => DbType.Int64,
+					StringType => DbType.String,
+					AnsiStringType => DbType.AnsiString,
+					AnsiCharType => DbType.AnsiStringFixedLength,
+					BinaryType => DbType.Binary,
+					BooleanType => DbType.Boolean,
+					ByteType => DbType.Byte,
+					CurrencyType => DbType.Currency,
+					DateType => DbType.Date,
+					DateTimeType => DbType.DateTime,
+					DateTimeOffsetType => DbType.DateTimeOffset,
+					DecimalType => DbType.Decimal,
+					DoubleType => DbType.Double,
+					SByteType => DbType.SByte,
+					SingleType => DbType.Single,
+					TimeType => DbType.Time,
+					UInt16Type => DbType.UInt16,
+					UInt32Type => DbType.UInt32,
+					UInt64Type => DbType.UInt64,
+					_ => throw new InvalidOperationException($"Cannot find DbType for {defaultType}")
+
+				};
+				return new SqlType[] { new SqlType(dbType) };
 			}
 		}
 
