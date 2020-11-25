@@ -22,6 +22,10 @@
     <EmbeddedResource Include="@(None -&gt; WithMetadataValue('Extension', '.sbntxt'))" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StrongType\StrongType.csproj" />
+  </ItemGroup>
+
   <!-- For every PackageReference with Pack=true, we include the assemblies from it in the package -->
   <Target Name="AddPackDependencies" Inputs="@(RuntimeCopyLocalItems)" Outputs="%(RuntimeCopyLocalItems.NuGetPackageId)" AfterTargets="ResolvePackageAssets">
     <ItemGroup>

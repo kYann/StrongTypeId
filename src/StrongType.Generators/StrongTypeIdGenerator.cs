@@ -9,72 +9,85 @@ using System.Text;
 
 namespace StrongType.Generators
 {
-    [Generator]
-    public class StrongTypeIdGenerator : ISourceGenerator
-    {
-        Template template;
+	[Generator]
+	public class StrongTypeIdGenerator : ISourceGenerator
+	{
+		Template template;
 
-        public void Initialize(GeneratorInitializationContext context) 
-        {
-            var file = "StrongTypeId.sbntxt";
-            template = Template.Parse(EmbeddedResource.GetContent(file), file);
+		public void Initialize(GeneratorInitializationContext context)
+		{
+			var file = "StrongTypeId.sbntxt";
+			template = Template.Parse(EmbeddedResource.GetContent(file), file);
 
-            context.RegisterForSyntaxNotifications(() => new StrongTypeIdReceiver());
-        }
+			context.RegisterForSyntaxNotifications(() => new StrongTypeIdReceiver());
+		}
 
-        private string GenerateStrongTypeId(string @namespace, string className)
-        {
-            var model = new
-            {
-                Namespace = @namespace,
-                ClassName = className,
-            };
+		private string GenerateStrongTypeId(string @namespace, string className)
+		{
+			var model = new
+			{
+				Namespace = @namespace,
+				ClassName = className,
+			};
 
-            // apply the template
-            var output = template.Render(model, member => member.Name);
+			// apply the template
+			var output = template.Render(model, member => member.Name);
 
-            return output;
-        }
+			return output;
+		}
 
-        public void Execute(GeneratorExecutionContext context)
-        {
+		public bool IsStrongTypeId(INamedTypeSymbol recordSymbol)
+		{
+			var strongTypeIdType = typeof(StrongTypeId<>);
+			var originalBaseTypeDef = recordSymbol.BaseType.OriginalDefinition;
+			var baseTypeAssembly = originalBaseTypeDef.ContainingAssembly;
+
+			var isSameAssembly = baseTypeAssembly.ToDisplayString() == strongTypeIdType.Assembly.FullName;
+			var isSameTypeName = strongTypeIdType.Name == originalBaseTypeDef.MetadataName;
+
+			return isSameAssembly && isSameTypeName;
+		}
+
+		public void Execute(GeneratorExecutionContext context)
+		{
 			if (context.SyntaxReceiver is not StrongTypeIdReceiver receiver)
 				return;
 
 			foreach (var rds in receiver.RecordDeclarations)
 			{
-                var model = context.Compilation.GetSemanticModel(rds.SyntaxTree);
+				var model = context.Compilation.GetSemanticModel(rds.SyntaxTree);
 
-				if (model.GetDeclaredSymbol(rds) is not INamedTypeSymbol classSymbol)
+				if (model.GetDeclaredSymbol(rds) is not INamedTypeSymbol recordSymbol)
 					continue;
 
-				var ns = classSymbol.ContainingNamespace.ToDisplayString();
-                var output = GenerateStrongTypeId(ns, classSymbol.Name);
+				if (!IsStrongTypeId(recordSymbol))
+					continue;
 
-                // add the file
-                context.AddSource($"{classSymbol.Name}.generated.cs", SourceText.From(output, Encoding.UTF8));
-            }
-        }
+				var ns = recordSymbol.ContainingNamespace.ToDisplayString();
+				var output = GenerateStrongTypeId(ns, recordSymbol.Name);
 
-        private class StrongTypeIdReceiver : ISyntaxReceiver
-        {
+				// add the file
+				context.AddSource($"{recordSymbol.Name}.generated.cs", SourceText.From(output, Encoding.UTF8));
+			}
+		}
+
+		private class StrongTypeIdReceiver : ISyntaxReceiver
+		{
 			public StrongTypeIdReceiver()
 			{
-                RecordDeclarations = new();
+				RecordDeclarations = new();
 			}
 
 			public List<RecordDeclarationSyntax> RecordDeclarations { get; private set; }
 
-            public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
-            {
-                if (syntaxNode is RecordDeclarationSyntax rds &&
-                    rds.BaseList is not null)
-                {
-                    var doesInherhitFromStrongTypeId = rds.BaseList.Types.Any(_ => _.ToString().Contains($"StrongTypeId<"));
-                    if (doesInherhitFromStrongTypeId)
-                        this.RecordDeclarations.Add(rds);
-                }
-            }
-        }
-    }
+			public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
+			{
+				if (syntaxNode is RecordDeclarationSyntax rds &&
+					rds.BaseList is not null)
+				{
+					this.RecordDeclarations.Add(rds);
+				}
+			}
+		}
+	}
 }
