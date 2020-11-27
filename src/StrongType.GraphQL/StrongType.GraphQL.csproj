@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>StrongTypeId.GraphQL</PackageId>
+    <Authors>Yann ROBIN</Authors>
+    <PackageTags>stronglytypedid strongid strong identifier stronglytyped graphql strongtypeid</PackageTags>
+    <Description>Provide GraphQL GraphType and AST converter for StrongTypeId.</Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GraphQL" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StrongType\StrongType.csproj" />
+  </ItemGroup>
+
+</Project>

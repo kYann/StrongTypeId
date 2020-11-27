@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NHibernate" Version="5.3.5" />
+    <PackageReference Include="NHibernate" Version="5.2.7" />
   </ItemGroup>
 
   <ItemGroup>
