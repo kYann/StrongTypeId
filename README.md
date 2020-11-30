@@ -148,6 +148,29 @@ And the url will look like this :
 
 To prevent this, you have to override `ToString()` or use the source generator that will do it for you.
 
+# GraphQL.Net
+
+Register specific ScalarType for GraphQL.Net
+
+```powershell
+Install-Package StrongTypeId.GraphQL
+```
+
+Inside your Schema :
+
+```csharp
+using StrongType.GraphQL;
+
+public class MySchema : Schema
+{
+	public MySchema(IHttpContextAccessor httpContextAccessor)
+		: base(httpContextAccessor.HttpContext.RequestServices)
+	{
+		this.AddStrongTypeId<ProductId>();
+	}
+}
+```
+
 # Generators
 ```powershell
 Install-Package StrongTypeId.Generators
