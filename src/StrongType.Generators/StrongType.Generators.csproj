@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>StrongTypeId.Generators</PackageId>
     <Authors>Yann ROBIN</Authors>
     <PackageTags>stronglytypedid strongid strong identifier stronglytyped json newtonsoft strongtypeid</PackageTags>
@@ -16,10 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
-    <PackageReference Include="Scriban" Version="2.1.2" PrivateAssets="all" GeneratePathProperty="true" />
-
-    <!-- Package the Scriban dependency alongside the generator assembly -->
-    <None Include="$(PkgScriban)\lib\netstandard2.0\*.dll" Pack="true" PackagePath="$(BuildOutputTargetFolder)/$(TargetFramework)" Visible="false" />
+    <PackageReference Include="Scriban" Version="2.1.2" PrivateAssets="all" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +32,30 @@
   <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
     <ItemGroup>
       <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+    </ItemGroup>
+  </Target>
+  <!-- For every PackageReference with Pack=true, we include the assemblies from it in the package -->
+  <Target Name="AddPackDependencies"
+          Inputs="@(RuntimeCopyLocalItems)"
+          Outputs="%(RuntimeCopyLocalItems.NuGetPackageId)"
+          DependsOnTargets="ResolvePackageAssets"
+          AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <NuGetPackageId Include="@(RuntimeCopyLocalItems -> '%(NuGetPackageId)')" />
+    </ItemGroup>
+    <PropertyGroup>
+      <NuGetPackageId>@(NuGetPackageId -&gt; Distinct())</NuGetPackageId>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReferenceDependency Include="@(PackageReference -&gt; WithMetadataValue('Identity', '$(NuGetPackageId)'))" />
+    </ItemGroup>
+    <PropertyGroup>
+      <NuGetPackagePack>@(PackageReferenceDependency -> '%(Pack)')</NuGetPackagePack>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(NuGetPackagePack)' == 'true'">
+      <_PackageFiles Include="@(RuntimeCopyLocalItems)" PackagePath="$(BuildOutputTargetFolder)/$(TargetFramework)/%(Filename)%(Extension)" />
+      <RuntimeCopyLocalItems Update="@(RuntimeCopyLocalItems)" CopyLocal="true" Private="true" />
+      <ResolvedFileToPublish Include="@(RuntimeCopyLocalItems)" CopyToPublishDirectory="PreserveNewest" RelativePath="%(Filename)%(Extension)" />
     </ItemGroup>
   </Target>
 </Project>
