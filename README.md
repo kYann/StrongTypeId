@@ -171,6 +171,22 @@ public class MySchema : Schema
 }
 ```
 
+# GraphQL HotChocolate
+```powershell
+Install-Package StrongTypeId.HotChocolate
+```
+
+In your Startup.cs, ConfigureServices :
+
+```csharp
+using StrongType.HotChocolate;
+
+...
+
+services.AddGraphQLServer()
+	.BindStrongTypeId<ProductId>()
+```
+
 # Generators
 ```powershell
 Install-Package StrongTypeId.Generators
