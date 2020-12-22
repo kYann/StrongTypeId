@@ -5,6 +5,7 @@
     <LangVersion>9.0</LangVersion>
     <PackageId>StrongTypeId.Generators</PackageId>
     <Authors>Yann ROBIN</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>stronglytypedid strongid strong identifier stronglytyped json newtonsoft strongtypeid</PackageTags>
     <Description>Generate ToString() method for StrongTypeId at compilation time</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
