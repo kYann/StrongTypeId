@@ -1,6 +1,6 @@
 # Introduction 
 StrongTypeId prevents developer from using the wrong Id in their code.
-Compatible with `Asp.Net Core routing`, `System.Text.Json`, `Newtonsoft.Json`, `GraphQL.Net`, `HotChocolate` and `NHibernate`
+Compatible with `Asp.Net Core routing`, `Entity Framework Core`, `NHibernate`, `System.Text.Json`, `Newtonsoft.Json`, `GraphQL.Net` and `HotChocolate`
 
 Record idea and TypeConverters are from [Thomas Levesque](https://twitter.com/thomaslevesque) [blog](https://thomaslevesque.com/2020/11/23/csharp-9-records-as-strongly-typed-ids-part-2-aspnet-core-route-and-query-parameters/)
 
@@ -126,6 +126,18 @@ var fluentCfg = Fluently.Configure()
         m.FluentMappings.Conventions.Add<ConventionStrongTypeId>();
     });
 ```
+
+## Entity Framework Core
+
+```powershell
+Install-Package StrongTypeId.EFCore
+```
+
+In your Startup.cs, ConfigureServices
+```csharp
+services.AddEntityFrameworkStrongTypeIdConventions();
+```
+
 
 
 # AspNet

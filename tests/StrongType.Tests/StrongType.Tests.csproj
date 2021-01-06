@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis" Version="3.8.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Specification.Tests" Version="5.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Scriban" Version="2.1.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -23,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\StrongType.EFCore\StrongType.EFCore.csproj" />
     <ProjectReference Include="..\..\src\StrongType.Newtonsoft.Json\StrongType.Newtonsoft.Json.csproj" />
     <ProjectReference Include="..\..\src\StrongType\StrongType.csproj" />
     <ProjectReference Include="..\..\src\StrongType.System.Text.Json\StrongType.System.Text.Json.csproj" />

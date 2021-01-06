@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <PackageId>StrongTypeId.EFCore</PackageId>
+    <Authors>Yann ROBIN</Authors>
+    <Company>Whyse</Company>
+    <PackageTags>stronglytypedid strongid strong identifier stronglytyped efcore orm entity framework core strongtypeid</PackageTags>
+    <Description>Provide entity framework convention for StrongTypeId.</Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StrongType\StrongType.csproj" />
+  </ItemGroup>
+
+</Project>

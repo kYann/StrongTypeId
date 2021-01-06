@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roslyn.CodeDom", "tests\Ros
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongType.GraphQL", "src\StrongType.GraphQL\StrongType.GraphQL.csproj", "{8F11AF9B-AA91-4552-8E80-50BDBF197174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongType.HotChocolate", "src\StrongType.HotChocolate\StrongType.HotChocolate.csproj", "{0A6498A1-EB80-42EF-A019-0D932649A004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongType.HotChocolate", "src\StrongType.HotChocolate\StrongType.HotChocolate.csproj", "{0A6498A1-EB80-42EF-A019-0D932649A004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongType.EFCore", "src\StrongType.EFCore\StrongType.EFCore.csproj", "{C605FDD8-AE72-4756-9334-6402CEA564FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +78,10 @@ Global
 		{0A6498A1-EB80-42EF-A019-0D932649A004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A6498A1-EB80-42EF-A019-0D932649A004}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A6498A1-EB80-42EF-A019-0D932649A004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C605FDD8-AE72-4756-9334-6402CEA564FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C605FDD8-AE72-4756-9334-6402CEA564FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C605FDD8-AE72-4756-9334-6402CEA564FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C605FDD8-AE72-4756-9334-6402CEA564FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
