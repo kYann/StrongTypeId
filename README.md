@@ -158,7 +158,7 @@ And the url will look like this :
 
 `/Product/Index/ProductId { Value = 5 }` instead of `/Product/Index/5`
 
-To prevent this, you have to override `ToString()` or use the source generator that will do it for you.
+To prevent this, you have to override `ToString()` or use the [source generator](#generators) that will do it for you.
 
 # GraphQL.Net
 
