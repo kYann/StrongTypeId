@@ -133,9 +133,11 @@ var fluentCfg = Fluently.Configure()
 Install-Package StrongTypeId.EFCore
 ```
 
-In your Startup.cs, ConfigureServices
+In your model's OnConfiguring method
 ```csharp
-services.AddEntityFrameworkStrongTypeIdConventions();
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder
+        .UseStrongTypeIdConventions();
 ```
 
 
