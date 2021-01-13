@@ -201,6 +201,14 @@ services.AddGraphQLServer()
 	.BindStrongTypeId<ProductId>()
 ```
 
+or if you wanna add all types automatically :
+
+```csharp
+services.AddGraphQLServer()
+	.BindStrongTypeInAssembly(typeof(ProductId).Assembly)
+```
+
+
 # Generators
 ```powershell
 Install-Package StrongTypeId.Generators

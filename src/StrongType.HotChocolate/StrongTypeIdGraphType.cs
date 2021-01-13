@@ -4,16 +4,26 @@ using System;
 
 namespace StrongType.HotChocolate
 {
-	public sealed class StrongTypeIdGraphType<TValue> : ScalarType where TValue : IStrongTypeId
+	public sealed class StrongTypeIdGraphType<TValue> : StrongTypeIdGraphType where TValue : IStrongTypeId
 	{
-		StrongTypeIdConverter converter = new StrongTypeIdConverter(typeof(TValue));
-
-		public StrongTypeIdGraphType() : base(typeof(TValue).Name)
+		public StrongTypeIdGraphType() : base(typeof(TValue))
 		{
+		}
+	}
+
+	public class StrongTypeIdGraphType: ScalarType
+	{
+		private readonly Type strongTypeIdType;
+		StrongTypeIdConverter converter;
+
+		public StrongTypeIdGraphType(Type strongTypeIdType) : base(strongTypeIdType.Name)
+		{
+			converter = new StrongTypeIdConverter(strongTypeIdType);
+			this.strongTypeIdType = strongTypeIdType;
 		}
 
 		// define which .NET type represents your type
-		public override Type RuntimeType => typeof(TValue);
+		public override Type RuntimeType => strongTypeIdType;
 
 		// define which literals this type can be parsed from.
 		public override bool IsInstanceOfType(IValueNode literal)
@@ -42,7 +52,7 @@ namespace StrongType.HotChocolate
 				return converter.ConvertFrom(valueSyntax.Value);
 
 			throw new ArgumentException(
-				$"Cannot parse {valueSyntax.GetType().Name} to {typeof(TValue).Name}.",
+				$"Cannot parse {valueSyntax.GetType().Name} to {strongTypeIdType.Name}.",
 				nameof(valueSyntax));
 		}
 
@@ -124,6 +134,11 @@ namespace StrongType.HotChocolate
 			}
 			resultValue = null;
 			return false;
+		}
+
+		public static Type MakeType(Type strongTypeIdType)
+		{
+			return typeof(StrongTypeIdGraphType<>).MakeGenericType(strongTypeIdType);
 		}
 	}
 }
