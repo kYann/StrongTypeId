@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <PackageId>StrongTypeId.EFCore.Npgsql</PackageId>
+    <Authors>Othman Daid</Authors>
+    <PackageTags>stronglytypedid strongid strong identifier stronglytyped efcore npgsql postgres entity framework strongtypeid</PackageTags>
+    <Description>Provide Auto Increment mapping for Entity Framework Core on Postgres.</Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

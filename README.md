@@ -140,7 +140,16 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         .UseStrongTypeIdConventions();
 ```
 
+## EFCore and Postgres
 
+When using Npgsql, StrongTypeId (by default) cannot be auto-increment.
+We need to change Npgsql conventions to do that :
+
+```csharp
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder
+        .UseCustomStrongTypeNpgsqlBuilder()
+```
 
 # AspNet
 
