@@ -37,7 +37,7 @@ namespace StrongType.HotChocolate
 				|| literal is NullValueNode;
 		}
 
-		public override object ParseLiteral(IValueNode valueSyntax, bool withDefaults = true)
+		public override object ParseLiteral(IValueNode valueSyntax)
 		{
 			if (valueSyntax == null)
 			{
