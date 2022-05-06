@@ -58,6 +58,7 @@ Simply declare your identifiers like this :
 ```csharp
 public record ProductId(int Value) : StrongTypeId(Value)
 {
+    // Before C# 10 and .Net6.0
 	// Needed if you wanna use your StrongTypeId in route parameters
 	// Or you can use StrongTypeId.Generators to generate it
 	public override string ToString() => base.ToString();
@@ -219,6 +220,9 @@ services.AddGraphQLServer()
 
 
 # Generators
+Before C# 10 and .Net6.0 the ToString method could not be sealed.
+So we needed a generator to create the right ToString method
+
 ```powershell
 Install-Package StrongTypeId.Generators
 ```

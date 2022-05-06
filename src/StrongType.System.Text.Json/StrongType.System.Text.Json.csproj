@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>9.0</LangVersion>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
 	  <PackageId>StrongTypeId.System.Text.Json</PackageId>
     <RootNamespace>StrongType.System.Text.Json</RootNamespace>
     <Authors>Yann ROBIN</Authors>

@@ -32,7 +32,8 @@ namespace StrongType.Tests
             var newComp = RunGenerators(comp, out var generatorDiags, new StrongTypeIdGenerator());
 
             Assert.Empty(generatorDiags);
-            Assert.Empty(newComp.GetDiagnostics());
+            var diagnostics = newComp.GetDiagnostics();
+            Assert.Empty(diagnostics);
 
             var nl = Environment.NewLine;
             var expectedGeneratedCode = $"namespace MyCode.Tests{nl}{{{nl}    public partial record ProductId{nl}    {{{nl}        public override string ToString() => base.ToString();{nl}    }}{nl}}}";
@@ -44,7 +45,7 @@ namespace StrongType.Tests
         private static Compilation CreateCompilation(string source) =>
             CSharpCompilation.Create("compilation",
                 new[] { CSharpSyntaxTree.ParseText(source, new CSharpParseOptions(LanguageVersion.CSharp9)) },
-                NetCoreApp31.All.Concat(new[]{
+                Net50.All.Concat(new[]{
                     MetadataReference.CreateFromFile(typeof(Template).GetTypeInfo().Assembly.Location),
                     MetadataReference.CreateFromFile(typeof(StrongTypeId<>).GetTypeInfo().Assembly.Location)
                 }),

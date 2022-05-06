@@ -30,7 +30,11 @@ namespace StrongType
 
 		public object GetValue() => Value;
 
+#if NET6_0
+		public sealed override string ToString() => Value.ToString();
+#else
 		public override string ToString() => Value.ToString();
+#endif
 
 		public static bool operator ==(StrongTypeId<TValue> a, TValue b)
 		{
