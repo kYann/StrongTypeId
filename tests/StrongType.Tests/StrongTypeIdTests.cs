@@ -5,7 +5,18 @@ namespace StrongType.Tests
 {
 	public class StrongTypeIdTests
 	{
-		public record StringTests(string Value) : StrongTypeId<string>(Value);
+		public record StringTests(string Value) : StrongTypeId<string>(Value)
+        {
+        }
+
+		public record ValidateTests(string Value) : StrongTypeId<string>(Value)
+		{
+            public override void Validate(string value)
+            {
+				if (value.StartsWith('a') == false)
+					throw new InvalidOperationException("Wrong primitive");
+            }
+        }
 
 		[Fact]
 		public void WhenTestingEqualityOperatorWithUnderlyingTypeThenItWorks()
@@ -96,6 +107,20 @@ namespace StrongType.Tests
 			Assert.False(testString1 == testStrong2);
 			Assert.True(testStrong2 != testString1);
 			Assert.False(testStrong2 == testString1);
+		}
+
+		[Fact]
+		public void WhenTestingNotValidStringThenItWorks()
+		{
+			Assert.Throws<InvalidOperationException>(() =>
+				new ValidateTests("Test de string")
+			);
+		}
+
+		[Fact]
+		public void WhenTestingValidStringThenItWorks()
+		{
+			new ValidateTests("a aaa aa");
 		}
 	}
 }

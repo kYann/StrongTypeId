@@ -8,7 +8,8 @@ using System.Linq;
 namespace StrongType.EFCore
 {
 	public class StrongTypeIdConversionConvention : IPropertyAddedConvention,
-		IEntityTypeAddedConvention
+		IEntityTypeAddedConvention,
+		IEntityTypeBaseTypeChangedConvention
 	{
 		private ValueConverter CreateValueConverter(Type strongTypeIdType, Type idType)
 		{
@@ -30,8 +31,8 @@ namespace StrongType.EFCore
 			propertyBuilder.HasConversion(valueConverter);
 		}
 
-		public void ProcessEntityTypeAdded(IConventionEntityTypeBuilder entityTypeBuilder, IConventionContext<IConventionEntityTypeBuilder> context)
-		{
+		private void Process(IConventionEntityTypeBuilder entityTypeBuilder)
+        {
 			if (entityTypeBuilder.Metadata.ClrType is null)
 				return;
 
@@ -43,9 +44,22 @@ namespace StrongType.EFCore
 			{
 				foreach (var property in properties)
 				{
-					entityType.AddProperty(property.Name, property.PropertyType, property);
+					entityTypeBuilder.Property(property);
+					//entityType.AddProperty(property.Name, property.PropertyType, property);
 				}
 			}
 		}
-	}
+
+		public void ProcessEntityTypeAdded(IConventionEntityTypeBuilder entityTypeBuilder, IConventionContext<IConventionEntityTypeBuilder> context)
+		{
+			Process(entityTypeBuilder);
+		}
+
+        public void ProcessEntityTypeBaseTypeChanged(IConventionEntityTypeBuilder entityTypeBuilder, IConventionEntityType newBaseType, IConventionEntityType oldBaseType, IConventionContext<IConventionEntityType> context)
+        {
+			if (newBaseType == oldBaseType)
+				return;
+			Process(entityTypeBuilder);
+		}
+    }
 }

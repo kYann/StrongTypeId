@@ -8,10 +8,27 @@ namespace StrongType
 		object GetValue();
     }
 
-    [TypeConverter(typeof(StrongTypeIdConverter))]
-    public abstract record StrongTypeId<TValue>(TValue Value) : IStrongTypeId where TValue : notnull
-    {
-        public object GetValue() => Value;
+	[TypeConverter(typeof(StrongTypeIdConverter))]
+	public abstract record StrongTypeId<TValue> : IStrongTypeId where TValue : notnull
+	{
+		TValue value;
+
+		public TValue Value 
+		{ 
+			get => value; 
+			init 
+			{
+				Validate(value);
+				this.value = value;
+			} 
+		}
+
+		public StrongTypeId(TValue Value)
+		{
+			this.Value = Value;
+		}
+
+		public object GetValue() => Value;
 
 		public override string ToString() => Value.ToString();
 
@@ -54,5 +71,7 @@ namespace StrongType
 		{
 			return this.Value.Equals(value);
 		}
+
+		public virtual void Validate(TValue value) { }
 	}
 }
