@@ -16,9 +16,9 @@ namespace Roslyn.CodeDom
                 case TargetFramework.Net50:
                     references = Net50.All;
                     break;
-                case TargetFramework.NetCoreApp31:
-                    references = NetCoreApp31.All;
-                    break;
+                //case TargetFramework.NetCoreApp31:
+                //    references = NetCoreApp31.All;
+                //    break;
                 case TargetFramework.NetStandard20:
                     references = NetStandard20.All;
                     break;

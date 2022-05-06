@@ -20,6 +20,7 @@ function Add-TargetFramework($name, $packagePath)
 
 "@
 
+  $upperName = $name
   $name = $name.ToLower()
   $list = Get-ChildItem -filter *.dll $realPackagePath | %{ $_.FullName }
   $allPropNames = @()
@@ -98,9 +99,9 @@ namespace Roslyn.CodeDom.References
 
 "@
 
-Add-TargetFramework "NetCoreApp31" 'Microsoft.NETCore.App.Ref\3.1.0\ref\netcoreapp3.1' 
+#Add-TargetFramework "NetCoreApp31" 'Microsoft.NETCore.App.Ref\3.1.0\ref\netcoreapp3.1' 
 
-Add-TargetFramework "Net50" 'Microsoft.NETCore.App.Ref\5.0.0\ref\net5.0' 
+Add-TargetFramework "Net50" 'microsoft.netcore.app.ref\5.0.0\ref\net5.0' 
 
 Add-TargetFramework "NetStandard20" 'netstandard.library\2.0.3\build\netstandard2.0\ref'
 
