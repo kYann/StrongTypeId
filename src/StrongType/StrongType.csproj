@@ -5,7 +5,7 @@
 		<RootNamespace>StrongType</RootNamespace>
 		<PackageId>StrongTypeId</PackageId>
 		<Authors>Yann ROBIN</Authors>
-		<Company>Whyse</Company>
+		<Company>CommonCore</Company>
 		<PackageTags>stronglytypedid strongid strong identifier stronglytyped strongtypeid</PackageTags>
 		<Description>StrongTypeId is a base class to create strongly typed Identifier for your model. It prevents developer from using the wrong ID</Description>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>

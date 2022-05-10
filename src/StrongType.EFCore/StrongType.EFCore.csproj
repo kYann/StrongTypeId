@@ -5,7 +5,7 @@
 		<LangVersion>latest</LangVersion>
 		<PackageId>StrongTypeId.EFCore</PackageId>
 		<Authors>Yann ROBIN</Authors>
-		<Company>Whyse</Company>
+		<Company>CommonCore</Company>
 		<PackageTags>stronglytypedid strongid strong identifier stronglytyped efcore orm entity framework core strongtypeid</PackageTags>
 		<Description>Provide entity framework convention for StrongTypeId.</Description>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>

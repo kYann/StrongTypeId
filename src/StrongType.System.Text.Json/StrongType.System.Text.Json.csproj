@@ -6,7 +6,7 @@
 		<PackageId>StrongTypeId.System.Text.Json</PackageId>
 		<RootNamespace>StrongType.System.Text.Json</RootNamespace>
 		<Authors>Yann ROBIN</Authors>
-		<Company>Whyse</Company>
+		<Company>CommonCore</Company>
 		<PackageTags>stronglytypedid strongid strong identifier stronglytyped json</PackageTags>
 		<Description>Serialize/Deserializer StrongTypeId from/to their base type using system text json. JsonConverterFactory</Description>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
