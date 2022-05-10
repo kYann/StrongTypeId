@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{52CC2D9E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0ECCA239-422B-4D90-9D0F-565026C41C53}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		.github\workflows\default.yml = .github\workflows\default.yml
 		README.md = README.md
 		.github\workflows\release.yml = .github\workflows\release.yml

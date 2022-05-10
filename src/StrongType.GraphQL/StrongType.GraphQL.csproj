@@ -1,20 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>StrongTypeId.GraphQL</PackageId>
-    <Authors>Yann ROBIN</Authors>
-    <PackageTags>stronglytypedid strongid strong identifier stronglytyped graphql strongtypeid</PackageTags>
-    <Description>Provide GraphQL GraphType and AST converter for StrongTypeId.</Description>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<PackageId>StrongTypeId.GraphQL</PackageId>
+		<Authors>Yann ROBIN</Authors>
+		<PackageTags>stronglytypedid strongid strong identifier stronglytyped graphql strongtypeid</PackageTags>
+		<Description>Provide GraphQL GraphType and AST converter for StrongTypeId.</Description>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RepositoryUrl>https://github.com/bump-charge/StrongType</RepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 
-  <ItemGroup>
-    <PackageReference Include="GraphQL" Version="3.0.0" />
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\StrongType\StrongType.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="GraphQL" Version="3.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\StrongType\StrongType.csproj" />
+	</ItemGroup>
 
 </Project>

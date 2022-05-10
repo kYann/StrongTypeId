@@ -1,15 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
-    <RootNamespace>StrongType</RootNamespace>
-	<PackageId>StrongTypeId</PackageId>
-    <Authors>Yann ROBIN</Authors>
-    <Company>Whyse</Company>
-    <PackageTags>stronglytypedid strongid strong identifier stronglytyped strongtypeid</PackageTags>
-    <Description>StrongTypeId is a base class to create strongly typed Identifier for your model. It prevents developer from using the wrong ID</Description>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-  </PropertyGroup>
-
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<RootNamespace>StrongType</RootNamespace>
+		<PackageId>StrongTypeId</PackageId>
+		<Authors>Yann ROBIN</Authors>
+		<Company>Whyse</Company>
+		<PackageTags>stronglytypedid strongid strong identifier stronglytyped strongtypeid</PackageTags>
+		<Description>StrongTypeId is a base class to create strongly typed Identifier for your model. It prevents developer from using the wrong ID</Description>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RepositoryUrl>https://github.com/bump-charge/StrongType</RepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+	</PropertyGroup>
 </Project>

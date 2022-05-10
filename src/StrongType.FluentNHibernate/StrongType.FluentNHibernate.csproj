@@ -1,21 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>StrongTypeId.FluentNHibernate</PackageId>
-    <Authors>Yann ROBIN</Authors>
-    <PackageTags>stronglytypedid strongid strong identifier stronglytyped nhibernate orm hibernate strongtypeid fluentnhibernate</PackageTags>
-    <Description>Provide fluent nhibernate convention for StrongTypeId using NHibernate.</Description>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<PackageId>StrongTypeId.FluentNHibernate</PackageId>
+		<Authors>Yann ROBIN</Authors>
+		<PackageTags>stronglytypedid strongid strong identifier stronglytyped nhibernate orm hibernate strongtypeid fluentnhibernate</PackageTags>
+		<Description>Provide fluent nhibernate convention for StrongTypeId using NHibernate.</Description>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RepositoryUrl>https://github.com/bump-charge/StrongType</RepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 
-  <ItemGroup>
-    <PackageReference Include="FluentNHibernate" Version="2.1.0" />
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\StrongType.NHibernate\StrongType.NHibernate.csproj" />
-    <ProjectReference Include="..\StrongType\StrongType.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentNHibernate" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\StrongType.NHibernate\StrongType.NHibernate.csproj" />
+		<ProjectReference Include="..\StrongType\StrongType.csproj" />
+	</ItemGroup>
 
 </Project>

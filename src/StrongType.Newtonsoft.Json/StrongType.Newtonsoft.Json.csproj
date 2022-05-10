@@ -1,21 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>StrongType.Newtonsoft.Json</RootNamespace>
-	  <PackageId>StrongTypeId.Newtonsoft.Json</PackageId>
-    <Authors>Yann ROBIN</Authors>
-    <PackageTags>stronglytypedid strongid strong identifier stronglytyped json newtonsoft strongtypeid</PackageTags>
-    <Description>Serialize/Deserializer StrongTypeId from/to their base type using newtonsoft json. JsonConverter</Description>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>StrongType.Newtonsoft.Json</RootNamespace>
+		<PackageId>StrongTypeId.Newtonsoft.Json</PackageId>
+		<Authors>Yann ROBIN</Authors>
+		<PackageTags>stronglytypedid strongid strong identifier stronglytyped json newtonsoft strongtypeid</PackageTags>
+		<Description>Serialize/Deserializer StrongTypeId from/to their base type using newtonsoft json. JsonConverter</Description>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RepositoryUrl>https://github.com/bump-charge/StrongType</RepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\StrongType\StrongType.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\StrongType\StrongType.csproj" />
+	</ItemGroup>
 
 </Project>
