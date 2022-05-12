@@ -1,37 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<IsPackable>false</IsPackable>
+		<RootNamespace>StrongType.Tests</RootNamespace>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>9.0</LangVersion>
-    <IsPackable>false</IsPackable>
-    <RootNamespace>StrongType.Tests</RootNamespace>
-	  <IsPackable>false</IsPackable>
-  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis" Version="4.1.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Specification.Tests" Version="6.0.5" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+		<PackageReference Include="Scriban" Version="5.4.4" />
+		<PackageReference Include="xunit" Version="2.4.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="coverlet.collector" Version="3.1.2">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Specification.Tests" Version="5.0.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageReference Include="Scriban" Version="2.1.2" />
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="1.3.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\StrongType.EFCore\StrongType.EFCore.csproj" />
-    <ProjectReference Include="..\..\src\StrongType.Newtonsoft.Json\StrongType.Newtonsoft.Json.csproj" />
-    <ProjectReference Include="..\..\src\StrongType\StrongType.csproj" />
-    <ProjectReference Include="..\..\src\StrongType.System.Text.Json\StrongType.System.Text.Json.csproj" />
-    <ProjectReference Include="..\..\src\StrongType.Generators\StrongType.Generators.csproj" />
-    <ProjectReference Include="..\Roslyn.CodeDom\Roslyn.CodeDom.csproj" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\StrongType.EFCore\StrongType.EFCore.csproj" />
+		<ProjectReference Include="..\..\src\StrongType.Newtonsoft.Json\StrongType.Newtonsoft.Json.csproj" />
+		<ProjectReference Include="..\..\src\StrongType\StrongType.csproj" />
+		<ProjectReference Include="..\..\src\StrongType.System.Text.Json\StrongType.System.Text.Json.csproj" />
+		<ProjectReference Include="..\..\src\StrongType.Generators\StrongType.Generators.csproj" />
+		<ProjectReference Include="..\Roslyn.CodeDom\Roslyn.CodeDom.csproj" />
+	</ItemGroup>
 </Project>

@@ -15,8 +15,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HotChocolate.Execution" Version="12.3.2" />
-		<PackageReference Include="HotChocolate.Types" Version="12.3.2" />
+		<PackageReference Include="HotChocolate.Execution" Version="12.9.0" />
+		<PackageReference Include="HotChocolate.Types" Version="12.9.0" />
 	</ItemGroup>
 
 	<ItemGroup>

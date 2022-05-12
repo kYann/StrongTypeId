@@ -51,12 +51,17 @@ namespace StrongType.EFCore
                 }
             }
 
-			public override long GetServiceProviderHashCode()
+			public override int GetServiceProviderHashCode()
 			{
                 return LogFragment.GetHashCode();
 			}
 
-			public override void PopulateDebugInfo([NotNullAttribute] IDictionary<string, string> debugInfo)
+            public override bool ShouldUseSameServiceProvider(DbContextOptionsExtensionInfo other)
+            {
+                return other.GetServiceProviderHashCode() == this.GetServiceProviderHashCode();
+            }
+
+            public override void PopulateDebugInfo([NotNullAttribute] IDictionary<string, string> debugInfo)
 			{
 			}
 		}

@@ -64,7 +64,7 @@ namespace StrongType.EFCore.Npgsql
 				}
 			}
 
-			static bool IsStrategyNoneNeeded(IProperty property, StoreObjectIdentifier storeObject)
+			static bool IsStrategyNoneNeeded(IReadOnlyProperty property, StoreObjectIdentifier storeObject)
 			{
 				if (property.ValueGenerated == ValueGenerated.OnAdd && property.GetDefaultValue(storeObject) == null &&
 					property.GetDefaultValueSql(storeObject) == null && property.GetComputedColumnSql(storeObject) == null &&

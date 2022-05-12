@@ -13,8 +13,8 @@ namespace Roslyn.CodeDom
             IEnumerable<MetadataReference>? references;
             switch (targetFramework)
             {
-                case TargetFramework.Net50:
-                    references = Net50.All;
+                case TargetFramework.Net60:
+                    references = Net60.All;
                     break;
                 //case TargetFramework.NetCoreApp31:
                 //    references = NetCoreApp31.All;

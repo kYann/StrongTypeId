@@ -49,12 +49,10 @@ namespace StrongType.Tests
 
 		private IModel BuildModel(Action<ModelBuilder> buildAction, CultureInfo cultureInfo = null)
 		{
-			var conventionSet = InMemoryTestHelpers.Instance.CreateConventionSetBuilder().CreateConventionSet();
-			ConventionSet.Remove(conventionSet.ModelFinalizedConventions, typeof(ValidatingConvention));
-
-			new StrongTypeConventionSetPlugin().ModifyConventions(conventionSet);
-
-			var builder = new ModelBuilder(conventionSet);
+			var builder = InMemoryTestHelpers.Instance.CreateConventionBuilder(configure: (conf) =>
+            {
+				new StrongTypeConventionSetPlugin().ModifyConventions(conf.Conventions);
+            });
 			buildAction(builder);
 			return builder.FinalizeModel();
 		}

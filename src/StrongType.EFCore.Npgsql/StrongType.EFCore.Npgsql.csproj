@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-		<LangVersion>9.0</LangVersion>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
 		<PackageId>StrongTypeId.EFCore.Npgsql</PackageId>
 		<Authors>Othman Daid</Authors>
 		<PackageTags>stronglytypedid strongid strong identifier stronglytyped efcore npgsql postgres entity framework strongtypeid</PackageTags>
@@ -16,7 +16,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.1" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
 	</ItemGroup>
 
 </Project>

@@ -6,6 +6,6 @@ namespace Roslyn.CodeDom
     {
         NetStandard20,
         NetCoreApp31,
-        Net50
+        Net60
     }
 }

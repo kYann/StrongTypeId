@@ -101,7 +101,7 @@ namespace Roslyn.CodeDom.References
 
 #Add-TargetFramework "NetCoreApp31" 'Microsoft.NETCore.App.Ref\3.1.0\ref\netcoreapp3.1' 
 
-Add-TargetFramework "Net50" 'microsoft.netcore.app.ref\5.0.0\ref\net5.0' 
+Add-TargetFramework "Net60" 'microsoft.netcore.app.ref\6.0.0\ref\net6.0' 
 
 Add-TargetFramework "NetStandard20" 'netstandard.library\2.0.3\build\netstandard2.0\ref'
 

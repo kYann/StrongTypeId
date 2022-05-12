@@ -21,7 +21,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
-		<PackageReference Include="Scriban" Version="2.1.2" PrivateAssets="all" Pack="true" />
+		<PackageReference Include="Scriban" Version="5.4.4" PrivateAssets="all" Pack="true" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -37,16 +37,11 @@
 
 	<Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
 		<ItemGroup>
-			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))"/>
+			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
 		</ItemGroup>
 	</Target>
 	<!-- For every PackageReference with Pack=true, we include the assemblies from it in the package -->
-	<Target Name="AddPackDependencies"
-			Inputs="@(RuntimeCopyLocalItems)"
-			Outputs="%(RuntimeCopyLocalItems.NuGetPackageId)"
-			DependsOnTargets="ResolvePackageAssets"
-			BeforeTargets="GenerateNuspec"
-			AfterTargets="ResolvePackageAssets">
+	<Target Name="AddPackDependencies" Inputs="@(RuntimeCopyLocalItems)" Outputs="%(RuntimeCopyLocalItems.NuGetPackageId)" DependsOnTargets="ResolvePackageAssets" BeforeTargets="GenerateNuspec" AfterTargets="ResolvePackageAssets">
 		<ItemGroup>
 			<NuGetPackageId Include="@(RuntimeCopyLocalItems -> '%(NuGetPackageId)')" />
 		</ItemGroup>

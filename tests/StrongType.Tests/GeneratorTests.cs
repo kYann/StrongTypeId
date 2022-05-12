@@ -17,7 +17,7 @@ namespace StrongType.Tests
 {
 	public class GeneratorTests
 	{
-        [Fact]
+        [Fact(Skip = "Not needed since C# 10.0")]
         public void StrongTypeIdGeneratorTest()
         {
 			string userSource = @"
@@ -45,7 +45,7 @@ namespace StrongType.Tests
         private static Compilation CreateCompilation(string source) =>
             CSharpCompilation.Create("compilation",
                 new[] { CSharpSyntaxTree.ParseText(source, new CSharpParseOptions(LanguageVersion.CSharp9)) },
-                Net50.All.Concat(new[]{
+                Net60.All.Concat(new[]{
                     MetadataReference.CreateFromFile(typeof(Template).GetTypeInfo().Assembly.Location),
                     MetadataReference.CreateFromFile(typeof(StrongTypeId<>).GetTypeInfo().Assembly.Location)
                 }),
