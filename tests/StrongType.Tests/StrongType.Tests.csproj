@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
 		<PackageReference Include="Microsoft.CodeAnalysis" Version="4.1.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Specification.Tests" Version="6.0.5" />
@@ -25,6 +26,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\src\StrongType.AutoMapper\StrongType.AutoMapper.csproj" />
 		<ProjectReference Include="..\..\src\StrongType.EFCore\StrongType.EFCore.csproj" />
 		<ProjectReference Include="..\..\src\StrongType.Newtonsoft.Json\StrongType.Newtonsoft.Json.csproj" />
 		<ProjectReference Include="..\..\src\StrongType\StrongType.csproj" />
