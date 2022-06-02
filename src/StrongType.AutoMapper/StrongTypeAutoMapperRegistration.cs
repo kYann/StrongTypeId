@@ -32,10 +32,8 @@ namespace StrongType.AutoMapper
 		{
 			foreach (var type in assembly.GetTypes())
 			{
-				if (StrongTypeIdHelper.IsStrongTypeId(type))
+				if (StrongTypeIdHelper.IsStrongTypeId(type, out var valueType))
 				{
-					var valueType = type.GenericTypeArguments[0];
-
 					cfg = cfg.MapStrongTypeId(type, valueType);
 				}
 			}
