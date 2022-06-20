@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -28,7 +29,8 @@ namespace StrongType.EFCore
 				return;
 
 			var valueConverter = CreateValueConverter(propertyBuilder.Metadata.ClrType, idType);
-			propertyBuilder.HasConversion(valueConverter);
+			propertyBuilder.HasConversion(valueConverter)
+				.HasValueComparer(ValueComparer.CreateDefault(propertyBuilder.Metadata.ClrType, false));
 		}
 
 		private void Process(IConventionEntityTypeBuilder entityTypeBuilder)
