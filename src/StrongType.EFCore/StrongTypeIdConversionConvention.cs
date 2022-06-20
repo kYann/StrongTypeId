@@ -19,13 +19,6 @@ namespace StrongType.EFCore
 			return (ValueConverter)Activator.CreateInstance(converterType);
 		}
 
-		private ValueComparer CreateValueComparer(Type strongTypeIdType, Type idType)
-		{
-			var converterType = typeof(StrongTypeIdValueComparer<,>).MakeGenericType(strongTypeIdType, idType);
-
-			return (ValueComparer)Activator.CreateInstance(converterType);
-		}
-
 		public void ProcessPropertyAdded(IConventionPropertyBuilder propertyBuilder, IConventionContext<IConventionPropertyBuilder> context)
 		{
 			if (propertyBuilder.Metadata.ClrType is null)
@@ -36,9 +29,7 @@ namespace StrongType.EFCore
 				return;
 
 			var valueConverter = CreateValueConverter(propertyBuilder.Metadata.ClrType, idType);
-			var valueComparer = CreateValueComparer(propertyBuilder.Metadata.ClrType, idType);
-			propertyBuilder.HasConversion(valueConverter)
-				.HasValueComparer(valueComparer);
+			propertyBuilder.HasConversion(valueConverter);
 		}
 
 		private void Process(IConventionEntityTypeBuilder entityTypeBuilder)
