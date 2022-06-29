@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using Xunit;
 
 namespace StrongType.Tests
@@ -121,6 +122,15 @@ namespace StrongType.Tests
 		public void WhenTestingValidStringThenItWorks()
 		{
 			new ValidateTests("a aaa aa");
+		}
+
+		[Fact]
+		public void WhenTestingConverterThenItWorks()
+		{
+			var converter = TypeDescriptor.GetConverter(typeof(StringTests));
+			var convertedValue = converter.ConvertFrom("test value");
+			Assert.IsType<StringTests>(convertedValue);
+			Assert.Equal("test value", ((StringTests)convertedValue).Value);
 		}
 	}
 }

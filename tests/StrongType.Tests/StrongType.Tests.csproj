@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<LangVersion>10.0</LangVersion>
+		<LangVersion>latest</LangVersion>
 		<IsPackable>false</IsPackable>
 		<RootNamespace>StrongType.Tests</RootNamespace>
 		<IsPackable>false</IsPackable>
