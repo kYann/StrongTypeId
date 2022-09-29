@@ -41,15 +41,14 @@ namespace StrongType
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value is string s)
-            {
-                value = IdValueConverter.ConvertFrom(s);
-            }
-
             if (value is TValue idValue)
             {
                 var factory = StrongTypeIdHelper.GetFactory<TValue>(_type);
                 return factory(idValue);
+            }
+            if (value is string s)
+            {
+                value = IdValueConverter.ConvertFrom(s);
             }
 
             return base.ConvertFrom(context, culture, value);
