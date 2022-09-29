@@ -15,8 +15,8 @@ namespace StrongType.System.Text.Json
 		public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
 		{
             StrongTypeIdHelper.IsStrongTypeId(typeToConvert, out var idType);
-            var strongType = typeof(StrongTypeIdConverterInner<>)
-                .MakeGenericType(new Type[] { idType });
+            var strongType = typeof(StrongTypeIdConverterInner<,>)
+                .MakeGenericType(new Type[] { typeToConvert, idType });
 
 
             JsonConverter converter = (JsonConverter)Activator.CreateInstance(
@@ -29,7 +29,7 @@ namespace StrongType.System.Text.Json
 			return converter;
 		}
 
-        private class StrongTypeIdConverterInner<TValue> : JsonConverter<StrongTypeId<TValue>> where TValue : notnull
+        private class StrongTypeIdConverterInner<TStrongType, TValue> : JsonConverter<TStrongType> where TValue : notnull where TStrongType : StrongTypeId<TValue>
         {
             private readonly JsonConverter<TValue> valueConverter;
 
@@ -39,16 +39,21 @@ namespace StrongType.System.Text.Json
                 valueConverter = (JsonConverter<TValue>)options.GetConverter(typeof(TValue));
             }
 
-            public override StrongTypeId<TValue> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+            public override bool CanConvert(Type typeToConvert)
+            {
+                return StrongTypeIdHelper.IsStrongTypeId(typeToConvert);
+            }
+
+            public override TStrongType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
             {
                 var idValue = JsonSerializer.Deserialize<TValue>(ref reader, options);
                 var converter = new StrongTypeIdConverter<TValue>(typeToConvert);
                 var strongTypeId = converter.ConvertFrom(idValue);
 
-                return (StrongTypeId<TValue>)strongTypeId;
+                return (TStrongType)strongTypeId;
             }
 
-            public override void Write(Utf8JsonWriter writer, StrongTypeId<TValue> strongTypeId, JsonSerializerOptions options)
+            public override void Write(Utf8JsonWriter writer, TStrongType strongTypeId, JsonSerializerOptions options)
             {
                 if (valueConverter is not null)
                 {
