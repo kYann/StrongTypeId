@@ -9,7 +9,9 @@ namespace StrongType.Tests
 	{
 		public record GuidTests(Guid Value) : StrongTypeId<Guid>(Value);
 
-		[Fact]
+        public record StringTests(string Value) : StrongTypeId<string>(Value);
+
+        [Fact]
 		public void WhenSerializingStrongTypeIdThenSerializationIsLikeUnderlyingType()
 		{
 			var id = Guid.NewGuid();
@@ -39,5 +41,36 @@ namespace StrongType.Tests
 
 			Assert.Equal(id, serializedStrongTypeId.Value);
 		}
-	}
+
+        [Fact]
+        public void WhenSerializingStrongTypeIdStringThenSerializationIsLikeUnderlyingType()
+        {
+            var id = Guid.NewGuid().ToString();
+
+            var strongTypeId = new StringTests(id);
+
+            var serializeOptions = new JsonSerializerOptions();
+            serializeOptions.Converters.Add(new StrongTypeIdJsonConverterFactory());
+
+            var serializedId = JsonSerializer.Serialize(id, serializeOptions);
+            var serializedStrongTypeId = JsonSerializer.Serialize(strongTypeId, serializeOptions);
+
+            Assert.Equal(serializedId, serializedStrongTypeId);
+        }
+
+        [Fact]
+        public void WhenDeserializingIdToStrongTypeIdStringThenDeserializationWorks()
+        {
+            var id = Guid.NewGuid().ToString();
+
+            var serializeOptions = new JsonSerializerOptions();
+            serializeOptions.Converters.Add(new StrongTypeIdJsonConverterFactory());
+
+
+            var serializedId = JsonSerializer.Serialize(id, serializeOptions);
+            var serializedStrongTypeId = JsonSerializer.Deserialize<StringTests>(serializedId, serializeOptions);
+
+            Assert.Equal(id, serializedStrongTypeId.Value);
+        }
+    }
 }
