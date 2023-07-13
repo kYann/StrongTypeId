@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongType.EFCore", "src\St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongType.EFCore.Npgsql", "src\StrongType.EFCore.Npgsql\StrongType.EFCore.Npgsql.csproj", "{F86B4384-0870-46E7-AD2C-E367A7D3D048}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongType.AutoMapper", "src\StrongType.AutoMapper\StrongType.AutoMapper.csproj", "{85415A4C-14AF-4685-AFB1-D808655A5913}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongType.AutoMapper", "src\StrongType.AutoMapper\StrongType.AutoMapper.csproj", "{85415A4C-14AF-4685-AFB1-D808655A5913}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongType.Swashbuckle", "StrongType.Swashbuckle\StrongType.Swashbuckle.csproj", "{D784B268-21B1-4563-B46A-39D06D497937}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,10 @@ Global
 		{85415A4C-14AF-4685-AFB1-D808655A5913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85415A4C-14AF-4685-AFB1-D808655A5913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85415A4C-14AF-4685-AFB1-D808655A5913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D784B268-21B1-4563-B46A-39D06D497937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D784B268-21B1-4563-B46A-39D06D497937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D784B268-21B1-4563-B46A-39D06D497937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D784B268-21B1-4563-B46A-39D06D497937}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
